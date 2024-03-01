@@ -11,8 +11,8 @@ function App() {
     {
       age: "1-4",
       gender: "F",
-      carbohydrates: "130",
-      protiens: "13",
+      carbohydrates: "130 g/day",
+      protiens: "13 g/day",
       lipids: "30-40",
       water: "1-1.3",
       vitaminA: "300",
