@@ -1,8 +1,39 @@
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Home from "./components/Home";
+import Nutrients from "./components/Nutrients";
+import Navbar from "./components/Navbar";
+
 function App() {
+
   const data = [
     {
       age: "1-4",
-      gender: "-",
+      gender: "F",
+      carbohydrates: "130",
+      protiens: "13",
+      lipids: "30-40",
+      water: "1-1.3",
+      vitaminA: "300",
+      vitaminE: "6",
+      vitaminD: "600",
+      vitaminC: "15",
+      vitaminK: "30",
+      vitaminB6: "0.5",
+      VITAMINB12: "0.9",
+      CALCIUM: "700",
+      IRON: "7",
+      MAGNESIUM: "80",
+      PHOSPHOROUS: "460",
+      POTASSIUM: "3000",
+      SODIUM: "1500",
+      ZINC: "3",
+      COPPER: "0.34",
+      MANGANESE: "1.2",
+      SELENIUM: "20",
+    },
+    {
+      age: "1-4",
+      gender: "M",
       carbohydrates: "130",
       protiens: "13",
       lipids: "30-40",
@@ -325,9 +356,21 @@ function App() {
       MANGANESE: "2.3",
       SELENIUM: "55",
     },
-    
-  ]
-  return <div></div>;
+  ];
+
+  return (
+    <BrowserRouter>
+    <Navbar/>
+    <Routes>
+      <Route path="/" element={ <Home data={data}/>}/>
+      <Route path="/nutrients" element={ <Nutrients/>}/>
+
+    </Routes>
+      
+     
+      
+    </BrowserRouter>
+  );
 }
 
 export default App;
