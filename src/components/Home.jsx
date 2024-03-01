@@ -4,8 +4,9 @@ import { useNavigate } from "react-router-dom";
 const Home = ({ data }) => {
   const [selectedGender, setSelectedGender] = useState(null);
   const [selectedAge, setSelectedAge] = useState("");
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   let reqData;
+
   const handleGenderChange = (gender) => {
     setSelectedGender(gender);
   };
@@ -14,29 +15,32 @@ const Home = ({ data }) => {
     setSelectedAge(e.target.value);
   };
 
-  const handleSubmit = (e)=>{
-    e.preventDefault()
-    
-    for(let i=0;i<data?.length;i++){
-        if(selectedAge===data[i].age && selectedGender === data[i].gender){
-            reqData = data[i]
-            console.log("first")
-        }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if(selectedAge==="" || selectedGender===null){
+        alert("Please provide all values")
+        return
     }
 
-    setSelectedAge("")
-    setSelectedGender(null)
-    navigate("/nutrients",{ state: { reqData } })
-    
-}
+    for (let i = 0; i < data?.length; i++) {
+      if (selectedAge === data[i].age && selectedGender === data[i].gender) {
+        reqData = data[i];
+      }
+    }
+
+    setSelectedAge("");
+    setSelectedGender(null);
+    navigate("/nutrients", { state: { reqData } });
+  };
 
   return (
-    <div className="w-full h-screen flex justify-center items-center">
-      <form className="w-1/3 h-1/2 flex flex-col gap-2" onSubmit={handleSubmit}>
-        <div className="mb-4 w-full flex justify-center items-center gap-2">
-          <label className="block">Select Age:</label>
+    <div className="flex justify-center items-start h-screen bg-gray-100 pt-5">
+      <form className="bg-white p-8 rounded shadow-md w-1/3 mt-8" onSubmit={handleSubmit}>
+        <div className="mb-4">
+          <label className="block text-gray-700 font-bold mb-2">Select Age:</label>
           <select
-            className=" border border-gray-300 rounded"
+            className="border border-gray-300 rounded w-full p-2"
             onChange={handleAgeChange}
             value={selectedAge}
           >
@@ -52,17 +56,17 @@ const Home = ({ data }) => {
             <option value="50+">50+</option>
           </select>
         </div>
-        <div className="flex items-center justify-center gap-2">
-          <label className="block ">Select Gender:</label>
-          <div className="flex ">
-            <label className="flex items-center mr-2">
+        <div className="flex items-center justify-between mb-4">
+          <label className="block text-gray-700 font-bold">Select Gender:</label>
+          <div className="flex">
+            <label className="flex items-center mr-4">
               <input
                 type="radio"
                 name="gender"
                 value="M"
                 checked={selectedGender === "M"}
                 onChange={() => handleGenderChange("M")}
-                className=""
+                className="mr-1"
               />
               Male
             </label>
@@ -73,14 +77,16 @@ const Home = ({ data }) => {
                 value="F"
                 checked={selectedGender === "F"}
                 onChange={() => handleGenderChange("F")}
-                className="mr-2"
+                className="mr-1"
               />
               Female
             </label>
           </div>
         </div>
-        <div className="w-full flex items-center justify-center">
-    <button type="submit" className="w-1/3 bg-blue-400">submit</button>
+        <div className="flex items-center justify-center">
+          <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded">
+            Submit
+          </button>
         </div>
       </form>
     </div>

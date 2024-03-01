@@ -2,6 +2,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./components/Home";
 import Nutrients from "./components/Nutrients";
 import Navbar from "./components/Navbar";
+import About from "./components/About";
+import Contact from "./components/Contact";
 
 function App() {
 
@@ -364,6 +366,8 @@ function App() {
     <Routes>
       <Route path="/" element={ <Home data={data}/>}/>
       <Route path="/nutrients" element={ <Nutrients/>}/>
+      <Route path="/about" element={ <About/>}/>
+      <Route path="/contact" element={ <Contact/>}/>
 
     </Routes>
       
